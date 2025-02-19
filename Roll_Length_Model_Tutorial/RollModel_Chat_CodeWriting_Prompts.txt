@@ -1,0 +1,61 @@
+
+<xxxPrompt Check intake of background from txt file>
+Do you understand the background in Roll_Model_Chat_Prompt.txt
+
+<xxxPrompt initialize test file>
+write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures
+
+<xxxPrompt add creation of test data>
+write an updated version of rl test fixture that uses the pfTestData fixture and which creates the *.csv file saved as pfTestData. It has two columns: length and diameter with two rows: length: [0, 20] and diameter: [40, 120]
+
+<xxxPrompt write .__init__>
+write the class .init() method based on the required and optional arguments in the fixture. Remember to use the docstring format from the background
+
+<xxxPrompt write test_init>
+write the test for __init__ named as "test_init" function for test_roll_model.py (no repeated underscores in name). In a single test function: instance classes to check two cases:
+* case where diam_core is spcified as 50. 
+* Also check the case where optional args are not specified
+
+<xxxPrompt Initialize writing the CaliperFromRawData procedure>
+We are ready to start writing the CaliperFromRawData procedure. Write the docstring "fence" for the procedure. Remember to indent appropriately and shorten the "===" to fit the 79-character line limit -- for the indent in the class *.py file and no indent in the test file
+
+<xxxPrompt Write first method and its test>
+write the .ReadRawData method that reads the data into a new .df_raw attribute
+* Add setting it to empty df in .init()) by reading from .file_raw
+* Write the test and check that it has two rows with column names length and diam and data values that match df values from rl fixture
+
+Since the __init__ will be updated, output it in one code block and output the method in a separate code block. Repeat the import statements if they change.
+
+<xxxPrompt Write the second method and its test>
+Write the AddCalculatedRawCols method and its test. The method should add two columns to .df_raw:
+* "diam_m" is diam/1000. to convert mm to m
+* "diam_m^2" is diam_m squared check the values. diam_m values according to those in rl fixture df
+
+<xxx Prompt Write the third method and its test>
+write the FitRawData method that uses scikit learn to fit a line to the df_raw data
+* The x and y variables are diam_m^2 and length respectively
+* create new .slope, .intcpt and .R_squared class attributes and initialize them as None in .init
+* To make copy/paste easier, output the new .__init__ in its own code block separate from the method
+* output the modified import statement in its own code block
+
+Write the test. 
+* set x and y numpy arrays from the appropriate .df_raw column .values
+* calculate delta_y and delta_x from the individual 2-element array values in x and y
+* calculate the slope_expected from delta_y and delta_x
+* calculate the intercept_expected from y[1], x[1] and slope_expected
+* use np.isclose to check that slope_expected and intercept_expected match hand calculated values of 1562.5 and -2.5 to within +/- 0.001
+* use np.isclose to check that .slope, .intcpt and .R_squared from the method match slope_expected, intercept_expected and 1.0 respectively
+
+<xxxPrompt Write the fourth method and its test>
+write .CalculateCaliper method that calculates the .caliper attribute in three steps:
+
+caliper_m = pi / (4 * slope)
+convert to mm to set caliper_mm
+round to 4 decimal places and set .caliper attribute
+
+Output a new __init__ that initializes .caliper as None. Output the method in a separate code block
+
+Write the test
+* use a formula to calculate caliper_expected based on 1562.5 slope; multiply by 1000. and round as in the method
+* check that caliper_expected matches hand calculated 0.5027 to within 0.0001
+* check that .caliper attribute matches caliper_expected to within 0.0001
