@@ -23,7 +23,7 @@ When working with such substrates, it is often beneficial to have a model for th
 
 The equation below comes from integrating an ordinary differential equation for how differential length changes with differential diameter as substrate of caliper, C is wrapped onto the core having outer diamer, D<sub>core</sub>. 
 
-The second form of the equation shows a useful rearrangement. Practically, for most substrates, C is approximately constant. This then predicts that L versus D<sub>roll</sub><sup>2</sup> will be a straight line with slope $\pi/4C$.<br>
+The second form of the equation shows a useful rearrangement. Practically, for most substrates, C is approximately constant. This then predicts that L versus D<sub>roll</sub><sup>2</sup> will be a straight line with slope $\pi/4C$. &pi;/4C<br>
 
 <img src="images/tutorial_eqn.png" alt="Description" width="600">  
 <img src="images/jmp_plots.png" alt="Description" width="600">  
@@ -52,7 +52,7 @@ For our use case/procedure, a good recipe of functions is:
 * Fit Line To Data (L versus diam^2)
 * Calculate Caliper from Slope 
 
-We will also need to create the class’ __init__ function to initialize class attributes. In fact, we like the curation practice of initializing all attributes in __init__ --whether they are being set there or later in one of the other functions.
+We will also need to create the class’ \_\_init\_\_ function to initialize class attributes. In fact, we like the curation practice of initializing all attributes in \_\_init\_\_--whether they are being set there or later in one of the other functions.
 
 
 #### Using LLM Chat To Generate the Python Code 
@@ -63,18 +63,19 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 4.	Copy **RollModel_Chat_Background_Prompt.txt** from the tutorial files to your **libs** folder. 
 5. You can use **RollModel_Chat_Background_Prompt.txt** as a starting point for any project if you customize the file names and the Pytest fixtures specific for the model. The file is designed to have all project-specific info in its top sections. (If you are not familiar with Pytest and "fixtures" specifically, ask ChatGPT to give you a quick tutorial on them.)
 
-<img src="images/tutorial_background_chat_prompt.png" alt="Description" width="600">
+    <img src="images/tutorial_background_chat_prompt.png" alt="Description" width="500">
 
 6.	Give Chat your first prompt: 
-    ```
+    
+    <pre style="white-space: pre-wrap;">
     “Do you understand the background in Roll_Model_Chat_Prompt.txt?"
-    ````
+    </pre> 
     Hopefully, it responds with “yes” 
 7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:
 
-    ```
-    “write the import statements for the test file. including setting a path to the project's libs >folder to import the RollLength class. Include the requested fixtures”
-    ```
+    <pre style="white-space: pre-wrap;">
+    “write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures”
+    </pre> 
 
 8.	One other detail to get started is to give the rl fixture some test data for validation. There are a couple of considerations for this:
 
@@ -82,9 +83,9 @@ Our approach with Chat is to first point it to an extensive background prompt. O
     - Since we will be fitting a line to length versus diameter, using just two rows of data makes it easy to hand calculate the slope and intercept of the line passing through the points.
 
     Based on this, the following prompt should get us an updated rl fixture with validation data creation where length is in meters and diameter in mm.
-    ```
+    <pre style="white-space: pre-wrap;">
     “write an updated version of rl test fixture that uses the pfTestData fixture and which creates the *.csv file saved as pfTestData. It has two columns: length and diameter with two rows: length: [0, 20] and diameter: [40, 120]”
-    ```
+    </pre>
 
     For upcoming checks, you can do your own hand calculations from the starting point that after converting to meters, diam_m: [0.040, 0.120] and diam_m^2: [0.0016, 0.0144]. You can hand calculate slope and intercept values for these L versus diam_m^2 points.
 
@@ -100,17 +101,18 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 12.	You will probably need some iterations with the above steps to get this working efficiently. For learning purposes, it is not a good idea to just copy/paste these, but our list of prompts is in Code_Writing_Prompts.xlsx spreadsheet. These successfully create a working model with only minimal cleanup required.
 
 #### Style Suggestions to Curate the Model
-As discussed above, you should clean up its code before calling it good. This is good for curation as well as for leaving a project you can be proud of. Chat has a tendency to parrot back your instructions as comments. We do not need a model with sections of code lines like this: 
+As discussed above, you should clean up its code before calling it good. This is good for curation as well as for leaving a project you can be proud of. Chat has a tendency to parrot back your instructions as comments.</br></br>
+We do not need a model with sections of code lines like this: 
 
 ```
 #Set x to 4
 x=4
 ```
 
-Here are style suggestions to curate your code. Our tutorial is based on these which are a part of making the code self explanatory to humans and AI.
+Here are additional style suggestions to curate your code. Our tutorial is based on these which are a part of making the code self explanatory to humans and AI.
 * Names matter for making the code readable to humans, and it appears to provide context to LLMs also. We use descriptive camel case function and class names like ReadRawData and CalculateRollWeight. For variable names, use underscore separators, and make them descriptive and  consistent. An example is that our project needs to check results against hand or test-calculated **expected_slope** and **expected_intcpt**. Those names are far superior to **param1** and **param2**.
 * Keep project functions single action which means 20 lines long or so. It is ok for tests to be a bit longer as long as they are well curated with descriptive comments
-* The class' \__init__ function should initialize all attributes including setting internally generated ones to None, [] empty list and pd.DataFrame() empty dataframe. The \__init__ should include comments documenting what they are, what units they are in etc.  
+* The class' \_\_init\_\_ function should initialize all attributes including setting internally generated ones to None, [] empty list and pd.DataFrame() empty dataframe. The \_\_init\_\_ should include comments documenting what they are, what units they are in etc.  
 * Leave breathing space between groups of code lines. Our practices are to always leave a blank line before a comment, to try to keep comments to a single line and or rarely/never add comments on the same line as code. Here is an example. 
 
 
