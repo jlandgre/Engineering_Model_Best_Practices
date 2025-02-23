@@ -67,14 +67,14 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 
 6.	Give Chat your first prompt: 
     
-    <pre style="white-space: pre-wrap;">
-    “Do you understand the background in Roll_Model_Chat_Prompt.txt?"
-    </pre> 
+    <code>
+    Do you understand the background in Roll_Model_Chat_Prompt.txt?
+    </code> 
     Hopefully, it responds with “yes” 
 7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:</br>
-    <code>
+    ```
     write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures
-    </code> 
+    ```
 
 8.	One other detail to get started is to give the rl fixture some test data for validation. There are a couple of considerations for this:
 
