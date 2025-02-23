@@ -74,7 +74,7 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:
 
     <code>
-    “write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures”
+    write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures
     </code> 
 
 8.	One other detail to get started is to give the rl fixture some test data for validation. There are a couple of considerations for this:
@@ -84,7 +84,7 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 
     Based on this, the following prompt should get us an updated rl fixture with validation data creation where length is in meters and diameter in mm.
     <pre style="white-space: pre-wrap;">
-    “write an updated version of rl test fixture that uses the pfTestData fixture and which creates the *.csv file saved as pfTestData. It has two columns: length and diameter with two rows: length: [0, 20] and diameter: [40, 120]”
+    write an updated version of rl test fixture that uses the pfTestData fixture and which creates the *.csv file saved as pfTestData. It has two columns: length and diameter with two rows: length: [0, 20] and diameter: [40, 120]
     </pre>
 
     For upcoming checks, you can do your own hand calculations from the starting point that after converting to meters, diam_m: [0.040, 0.120] and diam_m^2: [0.0016, 0.0144]. You can hand calculate slope and intercept values for these L versus diam_m^2 points.
