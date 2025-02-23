@@ -71,8 +71,7 @@ Our approach with Chat is to first point it to an extensive background prompt. O
     “Do you understand the background in Roll_Model_Chat_Prompt.txt?"
     </pre> 
     Hopefully, it responds with “yes” 
-7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:
-
+7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:</br>
     <code>
     write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures
     </code> 
@@ -82,10 +81,10 @@ Our approach with Chat is to first point it to an extensive background prompt. O
     - When using the model, we probably want to input length versus diameter data as a *.csv file whose path + filename string is an argument when initializing the class. This means that the **rl** test fixture should be modified to create a *.csv file with known, validation data points
     - Since we will be fitting a line to length versus diameter, using just two rows of data makes it easy to hand calculate the slope and intercept of the line passing through the points.
 
-    Based on this, the following prompt should get us an updated rl fixture with validation data creation where length is in meters and diameter in mm.
-    <pre style="white-space: pre-wrap;">
+    Based on this, the following prompt should get us an updated rl fixture with validation data creation where length is in meters and diameter in mm.</br>
+    <code>
     write an updated version of rl test fixture that uses the pfTestData fixture and which creates the *.csv file saved as pfTestData. It has two columns: length and diameter with two rows: length: [0, 20] and diameter: [40, 120]
-    </pre>
+    </code>
 
     For upcoming checks, you can do your own hand calculations from the starting point that after converting to meters, diam_m: [0.040, 0.120] and diam_m^2: [0.0016, 0.0144]. You can hand calculate slope and intercept values for these L versus diam_m^2 points.
 
