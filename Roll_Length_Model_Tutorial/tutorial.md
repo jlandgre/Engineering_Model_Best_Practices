@@ -72,9 +72,9 @@ Our approach with Chat is to first point it to an extensive background prompt. O
     </code> 
     Hopefully, it responds with “yes” 
 7.	We need to do some “top of file” setup for the tests file. It will need to import pandas, numpy, pytest, os and sys from the standard, available libraries. We also need to import the RollModel class from roll_model.py, but, to do so, we need to get the libs folder added to sys.path so that it can find our project *.py file. Here is a prompt to create that code for pasting into the tests file:</br>
-    ```
+    <code>
     write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures
-    ```
+    </code>
 
 8.	One other detail to get started is to give the rl fixture some test data for validation. There are a couple of considerations for this:
 
@@ -103,10 +103,10 @@ Our approach with Chat is to first point it to an extensive background prompt. O
 As discussed above, you should clean up its code before calling it good. This is good for curation as well as for leaving a project you can be proud of. Chat has a tendency to parrot back your instructions as comments.</br></br>
 We do not need a model with sections of code lines like this: 
 
-```
-#Set x to 4
+<code>
+#Set x to 4</br>
 x=4
-```
+</code>
 
 Here are additional style suggestions to curate your code. Our tutorial is based on these which are a part of making the code self explanatory to humans and AI.
 * Names matter for making the code readable to humans, and it appears to provide context to LLMs also. We use descriptive camel case function and class names like ReadRawData and CalculateRollWeight. For variable names, use underscore separators, and make them descriptive and  consistent. An example is that our project needs to check results against hand or test-calculated **expected_slope** and **expected_intcpt**. Those names are far superior to **param1** and **param2**.
