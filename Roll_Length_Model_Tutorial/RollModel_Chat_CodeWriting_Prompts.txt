@@ -1,6 +1,6 @@
 
 <xxxPrompt Check intake of background from txt file>
-Do you understand the background in Roll_Model_Chat_Prompt.txt
+Do you understand the background in Roll_Model_Chat_Background_Prompt.txt
 
 <xxxPrompt initialize test file>
 write the import statements for the test file. including setting a path to the project's libs folder to import the RollLength class. Include the requested fixtures

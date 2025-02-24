@@ -1,8 +1,8 @@
-### Tutorial for Using LLM Model Chat to Code An Engineering Model
+### Tutorial for Using LLM Chat to Code An Engineering Model
 J.D. Landgrebe, Data Delve LLC</br>
 February, 2025
 
-This tutorial walks through creating Python code and validation for a useful industrial model. We demonstrate using an LLM AI tool, Github Copilot Chat to code the model and Pytest tests in a separate file to validate the model’s calculations. We teach use of a code architecture that does a good job “curating” the model –making it transparent to work with and expand later. We also view it as critical to have rerunnable model validation in the form of coded tests. The Chat tool makes this efficient --doing the bulk of the coding work and requiring just minor, human cleanup of its output.
+This tutorial walks through creating Python code and validation for a useful industrial model. We demonstrate using a Large Language Model LLM AI tool, Github Copilot Chat to code the model. Chat also generates Pytest tests to place in a separate file to validate the model’s calculations. We teach use of a code architecture that does a good job “curating” the model –making it transparent to work with and expand later. The Chat tool makes this efficient --doing the bulk of the coding work and requiring just minor, human cleanup of its output.
 
 #### Contents
 - [Modeling Case Study Description](#modeling-case-study-description)
@@ -11,6 +11,7 @@ This tutorial walks through creating Python code and validation for a useful ind
 - [Architecting the Code](#architecting-the-code)
 - [Using LLM Chat To Generate the Python Code](#using-llm-chat-to-generate-the-python-code)
 - [Style Suggestions to Curate the Model](#style-suggestions-to-curate-the-model)
+- [Running the Model from a Jupyter Notebook "Dashboard"](#running-the-model-from-a-jupyter-notebook-dashboard)
 
 #### Modeling Case Study Description
 As a case study to work with, we will code a model that can calculate the caliper or z-direction thickness of a substrate wound on a roll. Some example substrates are nonwoven fabrics and film raw materials such as packaging film. Toilet paper and paper towels are consumer product examples.  We will use test our model on data measured for toilet paper purchased from a grocery store.
@@ -114,4 +115,21 @@ Here are additional style suggestions to curate your code. Our tutorial is based
 * The class' \_\_init\_\_ function should initialize all attributes including setting internally generated ones to None, [] empty list and pd.DataFrame() empty dataframe. The \_\_init\_\_ should include comments documenting what they are, what units they are in etc.  
 * Leave breathing space between groups of code lines. Our practices are to always leave a blank line before a comment, to try to keep comments to a single line and or rarely/never add comments on the same line as code. Here is an example. 
 
+#### Running the Model from a Jupyter Notebook "Dashboard"
+Once the model exists and is validated, one way to make it available to users is to create a Jupyter notebook "dashboard" containing commands for running our finished, Python procedure. The tutorial files contain Roll_Model.ipynb as an example. 
 
+To allow single-step calculation of material caliper, we added the .Caliper Python property function to roll_model.py. The @property decorator signifies that we will be returning a result from the function, and this also allows instancing the class and running the function in a single statement. The picture shows its usage and the two-step approach of first instancing the class and then calling our CaliperFromRawData() function. This has the advantage of making all class attributes available for inspection and further calculations.
+
+<img src="images/ipynb_usage.png" alt="Description" width="500">
+
+The example shows the calculated caliper of 0.48 mm for a store-bought roll of toilet paper.
+
+We also included a plotting procedure in roll_model.py. This shows the good linear fit in the data used to calculate caliper --corroborating the R<sup>2</sup> of almost 0.999.
+
+<img src="images/caliper_fit_plot.png" alt="Description" width="500">
+
+<p align="right">
+J.D. Landgrebe</br>
+Data Delve LLC</br>
+February, 2025
+</p>
